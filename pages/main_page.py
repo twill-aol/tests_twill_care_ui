@@ -23,7 +23,3 @@ class MainPage(BasePage):
                 MainPageLocators.SIGNUP_LINK: URI['signup'],
             }
         )
-
-    # def should_be_main_page(self):
-    #     self.should_be_elements_on_main_page()
-    #     self.go_to_links_on_main_page()
