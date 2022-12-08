@@ -3,15 +3,12 @@ from .locators import LoginPageLocators
 from .uri import URI
 
 
-class LoginPageLocators(BasePage):
+class MainPage(BasePage):
     def should_be_elements_on_main_page(self):
         pass
         # self.is_elements_present(
         #     (
-        #         MainPageLocators.ARTICLES_LINK,
-        #         MainPageLocators.EXPERTS_LINK,
-        #         MainPageLocators.LOGIN_LINK,
-        #         MainPageLocators.SIGNUP_LINK,
+        #         LoginPageLocators.ARTICLES_LINK,
         #     )
         # )
 
@@ -19,9 +16,6 @@ class LoginPageLocators(BasePage):
         pass
         # self.go_to_links(
         #     {
-        #         MainPageLocators.ARTICLES_LINK: URI['articles'],
-        #         MainPageLocators.EXPERTS_LINK: URI['experts'],
-        #         MainPageLocators.LOGIN_LINK: URI['login'],
-        #         MainPageLocators.SIGNUP_LINK: URI['signup'],
+        #         LoginPageLocators.ARTICLES_LINK: URI['articles'],
         #     }
         # )
