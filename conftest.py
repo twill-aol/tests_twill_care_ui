@@ -1,5 +1,6 @@
 import pytest
-from selenium import webdriver
+from datetime import datetime
+from selenium import webdriver  
 from selenium.webdriver.chrome.options import Options as CHRO
 from selenium.webdriver.firefox.options import Options as FIRO
 
@@ -40,3 +41,11 @@ def main_url(request):
     else:
         URL = 'https://care.stage-twill.health'
     yield URL
+
+# @pytest.hookimpl(tryfirst=True, hookwrapper=True)
+# def pytest_runtest_makereport(item, call):
+#     outcome = yield
+#     rep = outcome.get_result()
+#     if rep.when == 'call' and rep.failed:
+#         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+#         browser.save_screenshot(f".\\Screenshots\\fail_{now}.png")

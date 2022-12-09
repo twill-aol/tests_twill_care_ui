@@ -1,5 +1,6 @@
 from pages.main_page import MainPage
 from pages.uri import URI
+import allure
 
 
 def test_elements_on_main_page(browser, main_url):
