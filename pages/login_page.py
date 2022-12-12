@@ -3,75 +3,52 @@ from .locators import LoginPageLocators
 from .uri import URI
 
 
-class MainPage(BasePage):
-    def should_be_elements_on_main_page(self):
+class LoginPage(BasePage):
+    def should_be_elements_on_login_page(self):
+        self.is_elements_present(
+            (
+                LoginPageLocators.LOGIN_FORM,
+                LoginPageLocators.EMAIL_FIELD,
+                LoginPageLocators.PASSWORD_FIELD,
+                LoginPageLocators.SIGN_IN_BUTTON,
+                LoginPageLocators.SIGN_IN_FACEBOOK_BUTTON,
+                LoginPageLocators.SIGN_IN_APPLE_BUTTON,
+                LoginPageLocators.FORGOT_PASSWORD_LINK,
+                LoginPageLocators.BACK_BUTTON,
+            )
+        )
+
+    def active_elements_on_login_page(self):
+        self.go_to_active_elements(
+            {
+                LoginPageLocators.SIGN_IN_BUTTON: URI['login'],
+                LoginPageLocators.SIGN_IN_FACEBOOK_BUTTON: 'facebook',
+                LoginPageLocators.SIGN_IN_APPLE_BUTTON: 'apple',
+                LoginPageLocators.FORGOT_PASSWORD_LINK: URI['forgot_password'],
+            }
+        )
+
+    def wrong_data_to_login(self):
+        self.go_to_active_element(LoginPageLocators.SIGN_IN_BUTTON, URI['login'])
+        error_message = self.return_element_text(LoginPageLocators.ERROR_MESSAGE)
+        except_error_message = 'The email and password you entered did not \
+            match our records. Please try again or click "Forgot Password?"'
+        assert error_message == except_error_message, \
+            f'Excpected error message does not match: \nerror_message:[{error_message}] \
+            \nexcept_error_message[{except_error_message}]'
+
+    def back_button_missing_during_open_login_page_by_direct_link(self):
+        self.is_element_present(LoginPageLocators.BACK_BUTTON)
+
+    def login_user(self):
+        # api_register
         pass
-        # self.is_elements_present(
-        #     (
-        #         LoginPageLocators.ARTICLES_LINK,
-        #     )
-        # )
 
-    def go_to_links_on_main_page(self):
-        pass
-        # self.go_to_links(
-        #     {
-        #         LoginPageLocators.ARTICLES_LINK: URI['articles'],
-        #     }
-        # )
-
-
-# import time
-# from datetime import datetime    
-# import pytest
-# import os
-# from selenium import webdriver as selenium_webdriver
-# from selenium.webdriver.chrome.options import Options
-
-# # set up webdriver fixture
-# @pytest.fixture(scope='session')
-# def selenium_driver(request):
-#     chrome_options = Options()
-#     chrome_options.add_argument('--headless')
-#     chrome_options.add_argument('--no-sandbox')
-#     chrome_options.add_argument('--disable-dev-shm-usage')
-
-#     driver = selenium_webdriver.Chrome(options=chrome_options)
-#     driver.set_window_size(1920, 1080)
-#     driver.maximize_window()
-#     driver.implicitly_wait(5)
-
-#     yield driver
-#     driver.quit()
-
-# # set up a hook to be able to check if a test has failed
-# @pytest.hookimpl(tryfirst=True, hookwrapper=True)
-# def pytest_runtest_makereport(item, call):
-#     # execute all other hooks to obtain the report object
-#     outcome = yield
-#     rep = outcome.get_result()
-
-#     # set a report attribute for each phase of a call, which can
-#     # be "setup", "call", "teardown"
-
-#     setattr(item, "rep_" + rep.when, rep)
-
-# # check if a test has failed
-# @pytest.fixture(scope="function", autouse=True)
-# def test_failed_check(request):
-#     yield
-#     # request.node is an "item" because we use the default
-#     # "function" scope
-#     if request.node.rep_setup.failed:
-#         print("setting up a test failed!", request.node.nodeid)
-#     elif request.node.rep_setup.passed:
-#         if request.node.rep_call.failed:
-#             driver = request.node.funcargs['selenium_driver']
-#             take_screenshot(driver, request.node.nodeid)
-#             print("executing test failed", request.node.nodeid)
-
-# # make a screenshot with a name of the test, date and time
-# def take_screenshot(driver, nodeid):
-#     time.sleep(1)
-#     file_name = f'{nodeid}_{datetime.today().strftime("%Y-%m-%d_%H:%M")}.png'.replace("/","_").replace("::","__")
-#     driver.save_screenshot(file_name)
+# LOGIN_FORM
+# EMAIL_FIELD
+# PASSWORD_FIELD
+# SIGN_IN_BUTTON
+# SIGN_IN_FACEBOOK_BUT
+# SIGN_IN_APPLE_BUTTON
+# FORGOT_PASSWORD_LINK
+# BACK_BUTTON

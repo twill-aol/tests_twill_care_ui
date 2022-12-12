@@ -21,7 +21,7 @@ class BasePage():
                 break
         return text
 
-    def go_to_link(self, element, flag=None):
+    def go_to_active_element(self, element, flag=None):
         try:
             link = self.browser.find_element(*element)
             link.click()
@@ -32,11 +32,11 @@ class BasePage():
             return False
         return True
 
-    def go_to_links(self, elements: dict):
+    def go_to_active_elements(self, elements: dict):
         problem_elements = []
         for element in elements:
             flag = elements[element]
-            if not self.go_to_link(element, flag):
+            if not self.go_to_active_element(element, flag):
                 problem_elements.append(flag)
             self.browser.back()
         if problem_elements:

@@ -1,5 +1,5 @@
 from .base_page import BasePage
-from .locators import MainPageLocators
+from .locators import LoginPageLocators, MainPageLocators
 from .uri import URI
 
 
@@ -14,8 +14,8 @@ class MainPage(BasePage):
             )
         )
 
-    def go_to_links_on_main_page(self):
-        self.go_to_links(
+    def go_to_active_elements_on_main_page(self):
+        self.go_to_active_elements(
             {
                 MainPageLocators.ARTICLES_LINK: URI['articles'],
                 MainPageLocators.EXPERTS_LINK: URI['experts'],
@@ -23,3 +23,6 @@ class MainPage(BasePage):
                 MainPageLocators.SIGNUP_LINK: URI['signup'],
             }
         )
+
+    def back_button_available_during_open_login_page_by_using_button(self):
+        self.is_not_element_present(LoginPageLocators.BACK_BUTTON)
