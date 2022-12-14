@@ -14,8 +14,8 @@ class MainPage(BasePage):
             )
         )
 
-    def go_to_active_elements_on_main_page(self):
-        self.go_to_active_elements(
+    def active_elements_on_main_page(self):
+        self.click_active_elements(
             {
                 MainPageLocators.ARTICLES_LINK: URI['articles'],
                 MainPageLocators.EXPERTS_LINK: URI['experts'],

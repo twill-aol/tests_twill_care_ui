@@ -1,8 +1,8 @@
-import math
-from .locators import BasePageLocators
+import re
+import time
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import NoAlertPresentException, TimeoutException
+from selenium.common.exceptions import TimeoutException
 
 
 class BasePage():
@@ -21,28 +21,40 @@ class BasePage():
                 break
         return text
 
-    def go_to_active_element(self, element, flag=None):
+    def click_active_element(self, element, flag=None, timeout=5):
         try:
+            count_of_tabs = len(self.browser.window_handles)
             link = self.browser.find_element(*element)
             link.click()
             if flag is not None:
-                current_url = self.browser.current_url
+                if len(self.browser.window_handles) > count_of_tabs:
+                    old_tab = self.browser.window_handles[count_of_tabs-1]
+                    new_tab = self.browser.window_handles[count_of_tabs]
+                    self.browser.switch_to.window(new_tab)
+                    WebDriverWait(self.browser, timeout, 3, TimeoutException).until(EC.url_contains((flag)))
+                    current_url = self.browser.current_url
+                    self.browser.close()
+                    self.browser.switch_to.window(old_tab)
+                else:
+                    WebDriverWait(self.browser, timeout, 3, TimeoutException).until(EC.url_contains((flag)))
+                    current_url = self.browser.current_url
                 assert flag in current_url, f"{flag} is not in URL: {current_url}"
         except:
             return False
         return True
 
-    def go_to_active_elements(self, elements: dict):
+    def click_active_elements(self, elements: dict):
         problem_elements = []
         for element in elements:
             flag = elements[element]
-            if not self.go_to_active_element(element, flag):
+            if not self.click_active_element(element, flag):
                 problem_elements.append(flag)
             self.browser.back()
         if problem_elements:
             assert False, f'Check links does not have parts: {problem_elements}'
 
-    def is_disappeared(self, how, what, timeout=4):
+    def is_disappeared(self, element, timeout=4):
+        how, what = element
         try:
             WebDriverWait(self.browser, timeout, 1, TimeoutException).\
                 until_not(EC.presence_of_element_located((how, what)))
@@ -50,9 +62,9 @@ class BasePage():
             return False
         return True
 
-    def is_element_present(self, how, what):
+    def is_element_present(self, element):
         try:
-            self.browser.find_element(how, what)
+            self.browser.find_element(*element)
         except:
             return False
         return True
@@ -61,12 +73,13 @@ class BasePage():
         not_found_elements = []
         for element in elements:
             how, what = element
-            if not self.is_element_present(how, what):
+            if not self.is_element_present(element):
                 not_found_elements.append(what)
         if not_found_elements:
             assert False, f'Elements not found: {not_found_elements}'
 
-    def is_not_element_present(self, how, what, timeout=4):
+    def is_not_element_present(self, element, timeout=4):
+        how, what = element
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
@@ -77,7 +90,7 @@ class BasePage():
         found_elements = []
         for element in elements:
             how, what = element
-            if not self.is_not_element_present(how, what):
+            if not self.is_not_element_present(element):
                 found_elements.append(what)
         if found_elements:
             assert False, f'Elements not found: {found_elements}'
@@ -91,9 +104,19 @@ class BasePage():
             current_url = self.browser.current_url
             assert flag in current_url, f"{flag} is not in URL: {current_url}"
 
-    def return_element_text(self, how, what):
+    def return_element_text(self, element):
         try:
-            data = self.browser.find_element(how, what).text
+            data = self.browser.find_element(*element).text
         except:
             return False
         return data
+
+    def text_input(self, element, text: str):
+        try:
+            self.browser.find_element(*element).send_keys(text)
+        except:
+            assert False, f"Element: [{element}] doesn't accept text: [{text}]"
+
+    def text_match(self, elements: tuple):
+        expected_text, actual_text = elements
+        return bool(re.search(expected_text, actual_text))
