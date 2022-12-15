@@ -44,4 +44,4 @@ class LoginPage(BasePage):
 
         self.text_input(LoginPageLocators.EMAIL_FIELD, DATA['email'])
         self.text_input(LoginPageLocators.PASSWORD_FIELD, DATA['password'])
-        self.click_active_element()
+        self.click_active_element(LoginPageLocators.SIGNIN_BUTTON, 'feed')

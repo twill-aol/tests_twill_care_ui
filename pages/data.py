@@ -1,4 +1,4 @@
 DATA = {
-    'email': '
+    'email': 'm',
     'password'
 }

@@ -113,6 +113,7 @@ class BasePage():
 
     def text_input(self, element, text: str):
         try:
+            print(*element)
             self.browser.find_element(*element).send_keys(text)
         except:
             assert False, f"Element: [{element}] doesn't accept text: [{text}]"
