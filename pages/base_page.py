@@ -1,5 +1,7 @@
 import re
 import time
+from .locators import LoginPageLocators
+from pages.data import DATA
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException
@@ -21,7 +23,7 @@ class BasePage():
                 break
         return text
 
-    def click_active_element(self, element, flag=None, timeout=5):
+    def click_active_element(self, element, flag=None, timeout=15):
         try:
             count_of_tabs = len(self.browser.window_handles)
             link = self.browser.find_element(*element)
@@ -95,6 +97,12 @@ class BasePage():
         if found_elements:
             assert False, f'Elements not found: {found_elements}'
 
+    def login(self, email=DATA['email'], password=DATA['password']):
+        self.browser.get(self.url)
+        self.text_input(LoginPageLocators.EMAIL_FIELD, email)
+        self.text_input(LoginPageLocators.PASSWORD_FIELD, password)
+        return self.click_active_element(LoginPageLocators.SIGNIN_BUTTON, 'feed')
+
     def open(self):
         self.browser.get(self.url)
 
@@ -113,7 +121,6 @@ class BasePage():
 
     def text_input(self, element, text: str):
         try:
-            print(*element)
             self.browser.find_element(*element).send_keys(text)
         except:
             assert False, f"Element: [{element}] doesn't accept text: [{text}]"

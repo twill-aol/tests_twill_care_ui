@@ -25,10 +25,6 @@ class SignupPage(BasePage):
                 SignupPageLocators.SIGNUP_BUTTON: URI['signup'],
                 SignupPageLocators.TAC_LINK: URI['tac'],
                 SignupPageLocators.PP_LINK: URI['privacy_policy'],
-                # SignupPageLocators.PRIVACY_CHECK_BUTTON: None,
-                # SignupPageLocators.SIGNUP_FACEBOOK_BUTTON: 'facebook',
-                # SignupPageLocators.PRIVACY_CHECK_BUTTON: None,
-                # SignupPageLocators.SIGNUP_APPLE_BUTTON: 'apple',
             }
         )
 

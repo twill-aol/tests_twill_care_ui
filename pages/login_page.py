@@ -1,8 +1,8 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators
 from .uri import URI
-from pages.messages import MESSAGES
 from pages.data import DATA
+from pages.messages import MESSAGES
 
 
 class LoginPage(BasePage):
@@ -41,7 +41,4 @@ class LoginPage(BasePage):
 
     def login_user(self):
         # email_new_user = api_register
-
-        self.text_input(LoginPageLocators.EMAIL_FIELD, DATA['email'])
-        self.text_input(LoginPageLocators.PASSWORD_FIELD, DATA['password'])
-        self.click_active_element(LoginPageLocators.SIGNIN_BUTTON, 'feed')
+        assert self.login(), 'Login failed'
