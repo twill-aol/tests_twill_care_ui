@@ -22,13 +22,28 @@ class SignupPage(BasePage):
             {
                 SignupPageLocators.PRIVACY_CHECK_BUTTON: None,
                 SignupPageLocators.EMAIL_FIELD: None,
+                SignupPageLocators.SIGNUP_BUTTON: URI['signup'],
                 SignupPageLocators.TAC_LINK: URI['tac'],
                 SignupPageLocators.PP_LINK: URI['privacy_policy'],
-                SignupPageLocators.SIGNUP_BUTTON: URI['signup'],
-                SignupPageLocators.PRIVACY_CHECK_BUTTON: None,
-                SignupPageLocators.SIGNUP_FACEBOOK_BUTTON: 'facebook',
-                SignupPageLocators.PRIVACY_CHECK_BUTTON: None,
+                # SignupPageLocators.PRIVACY_CHECK_BUTTON: None,
+                # SignupPageLocators.SIGNUP_FACEBOOK_BUTTON: 'facebook',
+                # SignupPageLocators.PRIVACY_CHECK_BUTTON: None,
+                # SignupPageLocators.SIGNUP_APPLE_BUTTON: 'apple',
+            }
+        )
+
+    def button_sugnup_apple_on_signup_page(self):
+        self.click_active_elements(
+            {
                 SignupPageLocators.PRIVACY_CHECK_BUTTON: None,
                 SignupPageLocators.SIGNUP_APPLE_BUTTON: 'apple',
+            }
+        )
+
+    def button_sugnup_facebook_on_signup_page(self):
+        self.click_active_elements(
+            {
+                SignupPageLocators.PRIVACY_CHECK_BUTTON: None,
+                SignupPageLocators.SIGNUP_FACEBOOK_BUTTON: 'facebook',
             }
         )
