@@ -1,4 +1,0 @@
-DATA = {
-    'email': '',
-    'password'
-}

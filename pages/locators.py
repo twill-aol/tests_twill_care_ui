@@ -37,7 +37,7 @@ class BaseAuthPageLocators():
     SEARCH_BUTTON = (By.CLASS_NAME, "fa-regular.fa-magnifying-glass")
     SAVED_POSTS_BUTTON = (By.CLASS_NAME, "fa-regular.fa-magnifying-glass")
     NOTIFICATIONS_BUTTON = (By.CLASS_NAME, "fa-regular.fa-magnifying-glass")
-    USER_MENU_LINK = (By.CLASS_NAME, "btn.btn-avatar.dropdown-toggle")
+    USER_MENU_LINK = (By.CLASS_NAME, "dropdown")
     CREATE_POST_BUTTON = (By.CSS_SELECTOR, ".MainNav_link:nth-child(1)")
     FEED_BUTTON = (By.CSS_SELECTOR, ".MainNav_link:nth-child(2)")
     EXPLORE_BUTTON = (By.CSS_SELECTOR, ".MainNav_link:nth-child(3)")

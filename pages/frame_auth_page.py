@@ -15,7 +15,7 @@ class FrameAuthPage(BasePage):
                 BaseAuthPageLocators.SEARCH_BUTTON,
                 BaseAuthPageLocators.SAVED_POSTS_BUTTON,
                 BaseAuthPageLocators.NOTIFICATIONS_BUTTON,
-                # BaseAuthPageLocators.USER_MENU_LINK,
+                BaseAuthPageLocators.USER_MENU_LINK,
                 BaseAuthPageLocators.CREATE_POST_BUTTON,
                 # BaseAuthPageLocators.FEED_BUTTON,
                 # BaseAuthPageLocators.EXPLORE_BUTTON,
@@ -35,7 +35,7 @@ class FrameAuthPage(BasePage):
                 BaseAuthPageLocators.SEARCH_BUTTON: URI['search'],
                 BaseAuthPageLocators.SAVED_POSTS_BUTTON: URI['feed-saved'],
                 BaseAuthPageLocators.NOTIFICATIONS_BUTTON: URI['notifications'],
-                # BaseAuthPageLocators.USER_MENU_LINK: None,
+                BaseAuthPageLocators.USER_MENU_LINK: None,
                 BaseAuthPageLocators.CREATE_POST_BUTTON: URI['create-post'],
                 # BaseAuthPageLocators.FEED_BUTTON: URI['feed-communities'],
                 # BaseAuthPageLocators.EXPLORE_BUTTON: URI['articles'],
@@ -51,10 +51,9 @@ class FrameAuthPage(BasePage):
         assert True
 
     def elements_on_frame_auth_page(self):
-        self.login(url = URI['login'])
+        self.login()
         print('► 1')
-        self.should_be_elements_on_frame_auth_page()
+        # self.should_be_elements_on_frame_auth_page()
         print('► 2')
-        self.asd()
-        # self.active_elements_on_frame_auth_page()
+        self.active_elements_on_frame_auth_page()
         print('► 3')

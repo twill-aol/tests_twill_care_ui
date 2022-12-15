@@ -41,6 +41,7 @@ class BasePage():
                     WebDriverWait(self.browser, timeout, 3, TimeoutException).until(EC.url_contains((flag)))
                     current_url = self.browser.current_url
                 assert flag in current_url, f"{flag} is not in URL: {current_url}"
+            self.browser.refresh()
         except:
             return False
         return True
