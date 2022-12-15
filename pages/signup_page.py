@@ -43,3 +43,12 @@ class SignupPage(BasePage):
                 SignupPageLocators.SIGNUP_FACEBOOK_BUTTON: 'facebook',
             }
         )
+
+    def back_button_missing_during_open_signup_page_by_direct_link(self):
+        assert self.is_not_element_present(SignupPageLocators.BACK_BUTTON), \
+            'Back button is present on signup page'
+
+    def back_button_presents_during_open_signup_page_by_go_from_main_page(self):
+        self.click_active_element(MainPageLocators.LOGIN_LINK, URI['login'])
+        assert self.is_element_present(SignupPageLocators.BACK_BUTTON), \
+            'Back button is missing on signup page'

@@ -1,5 +1,5 @@
 from .base_page import BasePage
-from .locators import LoginPageLocators, MainPageLocators
+from .locators import LoginPageLocators, MainPageLocators, SignupPageLocators
 from .uri import URI
 
 
@@ -24,5 +24,8 @@ class MainPage(BasePage):
             }
         )
 
-    def back_button_available_during_open_login_page_by_using_button(self):
-        self.is_not_element_present(LoginPageLocators.BACK_BUTTON)
+    # def back_button_available_during_open_login_page_by_using_button(self):
+    #     self.is_not_element_present(LoginPageLocators.BACK_BUTTON)
+
+    # def back_button_available_during_open_login_page_by_using_button(self):
+    #     self.is_not_element_present(SignupPageLocators.BACK_BUTTON)

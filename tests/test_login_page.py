@@ -23,6 +23,12 @@ def test_back_button_missing_during_open_login_page_by_direct_link(browser, main
     page.open()
     page.back_button_missing_during_open_login_page_by_direct_link()
 
+def test_back_button_presents_during_open_login_page_by_go_from_main_page(browser, main_url):
+    page = LoginPage(browser, main_url)
+    page.open()
+    page.back_button_presents_during_open_login_page_by_go_from_main_page()
+
 def test_login(browser, main_url):
     page = LoginPage(browser, main_url + URI['login'])
     page.login_user()
+

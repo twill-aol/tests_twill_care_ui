@@ -1,5 +1,5 @@
 from .base_page import BasePage
-from .locators import LoginPageLocators
+from .locators import LoginPageLocators, MainPageLocators
 from .uri import URI
 from pages.data import DATA
 from pages.messages import MESSAGES
@@ -37,7 +37,13 @@ class LoginPage(BasePage):
         assert self.text_match((except_error_message, error_message))
 
     def back_button_missing_during_open_login_page_by_direct_link(self):
-        self.is_element_present(LoginPageLocators.BACK_BUTTON)
+        assert self.is_not_element_present(LoginPageLocators.BACK_BUTTON), \
+            'Back button is present on login page'
+
+    def back_button_presents_during_open_login_page_by_go_from_main_page(self):
+        self.click_active_element(MainPageLocators.LOGIN_LINK, URI['login'])
+        assert self.is_element_present(LoginPageLocators.BACK_BUTTON), \
+            'Back button is missing on login page'
 
     def login_user(self):
         # email_new_user = api_register
