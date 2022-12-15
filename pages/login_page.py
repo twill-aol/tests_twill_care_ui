@@ -1,7 +1,6 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators, MainPageLocators
 from .uri import URI
-from pages.data import DATA
 from pages.messages import MESSAGES
 
 

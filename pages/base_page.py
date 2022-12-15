@@ -1,6 +1,6 @@
 import re
-import time
 from .locators import LoginPageLocators
+from .uri import URI
 from pages.data import DATA
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -97,11 +97,14 @@ class BasePage():
         if found_elements:
             assert False, f'Elements not found: {found_elements}'
 
-    def login(self, email=DATA['email'], password=DATA['password']):
-        self.browser.get(self.url)
+    def login(self, email=DATA['email'], password=DATA['password'], url=None):
+        if url is not None:
+            self.browser.get(self.url + url)
+        else:
+            self.browser.get(self.url)
         self.text_input(LoginPageLocators.EMAIL_FIELD, email)
         self.text_input(LoginPageLocators.PASSWORD_FIELD, password)
-        return self.click_active_element(LoginPageLocators.SIGNIN_BUTTON, 'feed')
+        return self.click_active_element(LoginPageLocators.SIGNIN_BUTTON, URI['feed-communities'])
 
     def open(self):
         self.browser.get(self.url)

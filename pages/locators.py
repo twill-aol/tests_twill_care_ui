@@ -10,10 +10,6 @@ class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "li.nav-item:nth-child(3) > a:nth-child(1)")
     SIGNUP_LINK = (By.CSS_SELECTOR, "a.px-4:nth-child(1)")
 
-# class BaseAuthPageLocators():
-#     LOGIN_FORM = (By.ID, "login_form")
-#     REGISTER_FORM = (By.ID, "register_form")
-
 class LoginPageLocators():
     LOGIN_FORM = (By.CLASS_NAME, "main-content.col-10.col-md-8.mx-auto.my-auto")
     EMAIL_FIELD = (By.ID, "email")
@@ -37,11 +33,11 @@ class SignupPageLocators():
 
 class BaseAuthPageLocators():
     LOGO_LINK = (By.CLASS_NAME, "Grid_col.Grid_col-xs6.Grid_col-mdPlus2")
-    MENU_BUTTON = (By.ID, "MenuBtn")
+    TOP_NAV = (By.CLASS_NAME, "TopNav")
     SEARCH_BUTTON = (By.CLASS_NAME, "fa-regular.fa-magnifying-glass")
-    SAVE_POSTS_BUTTON = (By.CLASS_NAME, "fa-regular.fa-magnifying-glass")
+    SAVED_POSTS_BUTTON = (By.CLASS_NAME, "fa-regular.fa-magnifying-glass")
     NOTIFICATIONS_BUTTON = (By.CLASS_NAME, "fa-regular.fa-magnifying-glass")
-    USER_MENU_LINK = (By.CLASS_NAME, "btn.btn-avatar.dropdown-toggle.show")
+    USER_MENU_LINK = (By.CLASS_NAME, "btn.btn-avatar.dropdown-toggle")
     CREATE_POST_BUTTON = (By.CSS_SELECTOR, ".MainNav_link:nth-child(1)")
     FEED_BUTTON = (By.CSS_SELECTOR, ".MainNav_link:nth-child(2)")
     EXPLORE_BUTTON = (By.CSS_SELECTOR, ".MainNav_link:nth-child(3)")

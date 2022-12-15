@@ -6,4 +6,11 @@ URI = {
     'forgot_password': '/forgot-password',
     'tac': '/public/terms/',
     'privacy_policy': '/public/privacy',
+    'feed-communities': '/feed/communities',
+    'search': '/search',
+    'feed-saved': '/feed/saved',
+    'notifications': '/profile/notifications',
+    'create-post': '/feed/posts/write',
+    'tools': '/tools',
+    'disclaimer': '/public/disclaimer',
 }
